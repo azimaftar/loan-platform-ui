@@ -33,7 +33,7 @@
       <p>No loans yet. <a routerLink="/loans/create">Apply for your first loan</a></p>
     </div>
 
-    <div *ngIf="loading" class="loading">Loading...</div>
+    <app-spinner [show]="loading" message="Loading your dashboard..."></app-spinner>
 
     <table *ngIf="recentLoans.length > 0" class="loans-table">
       <thead>

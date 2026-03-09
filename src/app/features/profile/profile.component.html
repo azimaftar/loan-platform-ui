@@ -1,7 +1,7 @@
 <div class="page">
   <h1>My Profile</h1>
 
-  <div *ngIf="loading" class="loading">Loading...</div>
+  <app-spinner [show]="loading" message="Loading your dashboard..."></app-spinner>
 
   <div *ngIf="!loading && user" class="card">
     <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>

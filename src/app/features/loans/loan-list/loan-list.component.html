@@ -4,7 +4,7 @@
     <a routerLink="/loans/create" class="btn-primary">+ New Loan</a>
   </div>
 
-  <div *ngIf="loading" class="loading">Loading...</div>
+  <app-spinner [show]="loading" message="Loading your dashboard..."></app-spinner>
 
   <div *ngIf="!loading && loans.length === 0" class="empty-state">
     <p>You have no loans yet.</p>

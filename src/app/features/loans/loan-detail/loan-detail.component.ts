@@ -3,11 +3,12 @@ import { CommonModule,DatePipe, DecimalPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LoanService } from '../../../core/services/loan.service';
 import { Loan } from '../../../core/models/loan.model';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-loan-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SpinnerComponent],
   templateUrl: './loan-detail.component.html',
   styleUrl: './loan-detail.component.scss'
 })
@@ -50,10 +51,12 @@ export class LoanDetailComponent implements OnInit {
           this.successMessage = 'Loan submitted successfully. Risk assessment complete.';
         }
         this.actionLoading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Failed to submit loan.';
         this.actionLoading = false;
+        this.cdr.detectChanges();
       }
     });
   }
@@ -68,10 +71,12 @@ export class LoanDetailComponent implements OnInit {
           this.successMessage = 'Loan marked as paid successfully.';
         }
         this.actionLoading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Failed to mark loan as paid.';
         this.actionLoading = false;
+        this.cdr.detectChanges(); 
       }
     });
   }

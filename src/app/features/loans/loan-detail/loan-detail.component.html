@@ -4,7 +4,7 @@
     <a routerLink="/loans">Back to Loans</a>
   </div>
 
-  <div *ngIf="loading" class="loading">Loading...</div>
+  <app-spinner [show]="loading" message="Loading your dashboard..."></app-spinner>
 
   <div *ngIf="!loading && loan">
     <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>

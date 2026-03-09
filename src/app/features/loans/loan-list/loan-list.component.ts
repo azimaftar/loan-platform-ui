@@ -1,13 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CommonModule,DatePipe, DecimalPipe } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { LoanService } from '../../../core/services/loan.service';
 import { Loan } from '../../../core/models/loan.model';
+import { SpinnerComponent } from '../../../shared/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-loan-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SpinnerComponent],
   templateUrl: './loan-list.component.html',
   styleUrl: './loan-list.component.scss'
 })
