@@ -1,0 +1,62 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background: #3f51b5;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.navbar-brand a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+
+    &:hover, &.active {
+      color: white;
+    }
+  }
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .username {
+    font-size: 0.9rem;
+  }
+
+  .role-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+  }
+
+  button {
+    padding: 0.4rem 1rem;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(255,255,255,0.3);
+    }
+  }
+}

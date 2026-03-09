@@ -1,0 +1,62 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Loan Details</h1>
+    <a routerLink="/loans">Back to Loans</a>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <div *ngIf="!loading && loan">
+    <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div class="card">
+      <div class="detail-header">
+        <div>
+          <h2>{{ loan.purpose }}</h2>
+          <p class="loan-id">ID: {{ loan.id }}</p>
+        </div>
+        <span [class]="'status-badge ' + getStatusClass(loan.status)">
+          {{ loan.status }}
+        </span>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-item">
+          <label>Amount</label>
+          <p>RM {{ loan.amount | number:'1.2-2' }}</p>
+        </div>
+        <div class="detail-item">
+          <label>Applicant</label>
+          <p>{{ loan.username }}</p>
+        </div>
+        <div class="detail-item">
+          <label>Applied On</label>
+          <p>{{ loan.createdAt | date:'dd MMM yyyy, h:mm a' }}</p>
+        </div>
+        <div class="detail-item">
+          <label>Last Updated</label>
+          <p>{{ loan.updatedAt | date:'dd MMM yyyy, h:mm a' }}</p>
+        </div>
+      </div>
+
+      <div class="actions" *ngIf="loan.status === 'PENDING' || loan.status === 'APPROVED'">
+        <button
+          *ngIf="loan.status === 'PENDING'"
+          (click)="submitLoan()"
+          [disabled]="actionLoading"
+          class="btn-primary">
+          {{ actionLoading ? 'Processing...' : 'Submit for Review' }}
+        </button>
+
+        <button
+          *ngIf="loan.status === 'APPROVED'"
+          (click)="payLoan()"
+          [disabled]="actionLoading"
+          class="btn-success">
+          {{ actionLoading ? 'Processing...' : 'Mark as Paid' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,63 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h1>Welcome back, {{ username }}</h1>
+    <a routerLink="/loans/create" class="btn-primary">+ New Loan</a>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Total Loans</h3>
+      <p class="stat-number">{{ totalLoans }}</p>
+    </div>
+    <div class="stat-card approved">
+      <h3>Approved</h3>
+      <p class="stat-number">{{ approvedLoans }}</p>
+    </div>
+    <div class="stat-card pending">
+      <h3>Pending</h3>
+      <p class="stat-number">{{ pendingLoans }}</p>
+    </div>
+    <div class="stat-card rejected">
+      <h3>Rejected</h3>
+      <p class="stat-number">{{ rejectedLoans }}</p>
+    </div>
+  </div>
+
+  <div class="recent-loans">
+    <div class="section-header">
+      <h2>Recent Loans</h2>
+      <a routerLink="/loans">View all</a>
+    </div>
+
+    <div *ngIf="recentLoans.length === 0 && !loading" class="empty-state">
+      <p>No loans yet. <a routerLink="/loans/create">Apply for your first loan</a></p>
+    </div>
+
+    <div *ngIf="loading" class="loading">Loading...</div>
+
+    <table *ngIf="recentLoans.length > 0" class="loans-table">
+      <thead>
+        <tr>
+          <th>Purpose</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of recentLoans">
+          <td>{{ loan.purpose }}</td>
+          <td>RM {{ loan.amount | number:'1.2-2' }}</td>
+          <td>
+            <span [class]="'status-badge ' + getStatusClass(loan.status)">
+              {{ loan.status }}
+            </span>
+          </td>
+          <td>{{ loan.createdAt | date:'dd MMM yyyy' }}</td>
+          <td><a [routerLink]="['/loans', loan.id]">View</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

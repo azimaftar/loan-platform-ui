@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="page-header">
+    <h1>New Loan Application</h1>
+    <a routerLink="/loans">Back to Loans</a>
+  </div>
+
+  <div class="card">
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Loan Amount (RM)</label>
+        <input
+          type="number"
+          [(ngModel)]="request.amount"
+          name="amount"
+          placeholder="Minimum RM 100"
+          min="100"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Purpose</label>
+        <textarea
+          [(ngModel)]="request.purpose"
+          name="purpose"
+          placeholder="Describe the purpose of this loan"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/loans" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary" [disabled]="loading">
+          {{ loading ? 'Submitting...' : 'Create Application' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

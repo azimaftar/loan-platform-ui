@@ -1,0 +1,61 @@
+<div class="page">
+  <h1>My Profile</h1>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <div *ngIf="!loading && user" class="card">
+    <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div class="profile-header">
+      <div class="avatar">{{ user.username[0].toUpperCase() }}</div>
+      <div>
+        <h2>{{ user.username }}</h2>
+        <span class="role-badge">{{ user.role }}</span>
+      </div>
+      <button (click)="isEditing = !isEditing" class="btn-secondary">
+        {{ isEditing ? 'Cancel' : 'Edit Profile' }}
+      </button>
+    </div>
+
+    <div *ngIf="!isEditing" class="profile-details">
+      <div class="detail-item">
+        <label>Email</label>
+        <p>{{ user.email }}</p>
+      </div>
+      <div class="detail-item">
+        <label>Profile Info</label>
+        <p>{{ user.profileInfo || 'No profile info added yet.' }}</p>
+      </div>
+      <div class="detail-item">
+        <label>Member Since</label>
+        <p>{{ user.createdAt | date:'dd MMM yyyy' }}</p>
+      </div>
+    </div>
+
+    <form *ngIf="isEditing" (ngSubmit)="onSave()">
+      <div class="form-group">
+        <label>Username</label>
+        <input
+          type="text"
+          [(ngModel)]="request.username"
+          name="username"
+        />
+      </div>
+      <div class="form-group">
+        <label>Profile Info</label>
+        <textarea
+          [(ngModel)]="request.profileInfo"
+          name="profileInfo"
+          rows="4"
+          placeholder="Tell us about yourself"
+        ></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="saving">
+          {{ saving ? 'Saving...' : 'Save Changes' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
