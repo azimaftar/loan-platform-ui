@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -17,7 +17,7 @@ export class LoginComponent {
   errorMessage = '';
   loading = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private cdr: ChangeDetectorRef) {}
 
   onSubmit(): void {
     this.loading = true;
@@ -32,9 +32,11 @@ export class LoginComponent {
       error: (err) => {
         this.errorMessage = err.error?.message || 'Login failed. Please try again.';
         this.loading = false;
+        this.cdr.detectChanges()
       },
       complete: () => {
         this.loading = false;
+        this.cdr.detectChanges()
       }
     });
   }

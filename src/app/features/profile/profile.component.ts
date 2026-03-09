@@ -40,6 +40,8 @@ export class ProfileComponent implements OnInit {
       error: () => { this.loading = false; }
     });
   }
+
+
   onSave(): void {
     this.saving = true;
     this.successMessage = '';
@@ -53,10 +55,12 @@ export class ProfileComponent implements OnInit {
           this.isEditing = false;
         }
         this.saving = false;
+        this.cdr.detectChanges()
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Failed to update profile.';
         this.saving = false;
+        this.cdr.detectChanges()
       }
     });
   }
