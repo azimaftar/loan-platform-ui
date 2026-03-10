@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiResponse } from '../models/api-response.model';
 import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = `${environment.apiUrl}/api/auth`;
   private tokenKey = 'loan_platform_token';
   private userKey = 'loan_platform_user';
 
