@@ -1,5 +1,0 @@
-[phases.build]
-cmds = ["npm install", "npm run build:prod"]
-
-[start]
-cmd = "npx serve -s dist/loan-platform-ui/browser -l 3000"
