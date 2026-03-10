@@ -12,7 +12,9 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
 
-  private apiUrl = `${environment.apiUrl}/api/auth`;
+  private apiUrl = window.location.hostname === 'localhost' 
+  ? 'http://localhost:8080/api/auth'
+  : 'https://loan-platform-production.up.railway.app/api/auth';
   private tokenKey = 'loan_platform_token';
   private userKey = 'loan_platform_user';
 
