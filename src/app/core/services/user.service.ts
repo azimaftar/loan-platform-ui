@@ -10,9 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class UserService {
 
-  private apiUrl = window.location.hostname === 'localhost' 
-  ? 'http://localhost:8080/api/users'
-  : 'https://loan-platform-production.up.railway.app/api/users';
+  private apiUrl = `${environment.apiUrl}/api/users`;
 
   constructor(private http: HttpClient) {}
 

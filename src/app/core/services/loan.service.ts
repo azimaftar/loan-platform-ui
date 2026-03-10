@@ -10,9 +10,8 @@ import { environment } from '../../../environments/environment';
 })
 export class LoanService {
 
-  private apiUrl = window.location.hostname === 'localhost' 
-  ? 'http://localhost:8080/api/loans'
-  : 'https://loan-platform-production.up.railway.app/api/loans';
+  private apiUrl = `${environment.apiUrl}/api/loans`;
+  
 
   constructor(private http: HttpClient) {}
 
